@@ -2,8 +2,11 @@ package lab;
 
 //maintains a list of Staff objects as an ArrayList
 
+import lab.exceptions.DuplicateIDException;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
 
 public class StaffList
 {
@@ -21,7 +24,7 @@ public class StaffList
     /**
      * Look up an id and return the
      * corresponding staff details.
-     * @param idThe id  to be looked up.
+     * @param The id  to be looked up.
      * @return The details corresponding to the id, null if none
      */
     public Staff findById(String id)
@@ -42,9 +45,16 @@ public class StaffList
      * Add a new set of details to the list
      * @param details The details of the staff
      */
-    public void addDetails(Staff details) 
-    {
-		staffList.add(details);
+    public void addDetails(Staff details) throws DuplicateIDException {
+        if (details == null )
+            throw new IllegalArgumentException();
+        else {
+            String id = details.getId();
+            if (findById(id) != null)
+                throw new DuplicateIDException(id);
+            else
+                staffList.add(details);
+        }
     }
     
     /**

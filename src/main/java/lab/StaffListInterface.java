@@ -1,5 +1,7 @@
 package lab;
 
+import lab.exceptions.DuplicateIDException;
+
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.io.*;
@@ -84,6 +86,12 @@ public class StaffListInterface
 	    	scanner.nextLine(); //read end of line character
 	
 	    }
+        catch (IllegalStateException e) {
+            message = e.getMessage()+"\nDetails not added";
+        }
+        catch (DuplicateIDException e) {
+            message = e.getMessage()+"\nDetails not added";
+        }
         System.out.println(message);
     }
     

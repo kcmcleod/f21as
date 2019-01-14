@@ -3,6 +3,8 @@ package lab;
 //program demonstrating using a list of Staff objects
 //adding and removing and listing and searching
 //uses exceptions
+import lab.exceptions.DuplicateIDException;
+
 import java.io.*;
 
 public class StaffListDemo
@@ -12,7 +14,7 @@ public class StaffListDemo
 	private StaffListGUI gui;
 
 
-    public StaffListDemo() 
+    public StaffListDemo() throws DuplicateIDException
     {
     	//initialise empty list of staff
         entries = new StaffList();
@@ -75,7 +77,7 @@ public class StaffListDemo
         gui.setVisible(true);
     }     
     
-    public static void main (String[] arg)  {
+    public static void main (String[] arg) throws DuplicateIDException {
        	//creates demo object, with a populated staff list
     	StaffListDemo sld = new StaffListDemo();   
     	
