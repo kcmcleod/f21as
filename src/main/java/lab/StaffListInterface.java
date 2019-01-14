@@ -1,6 +1,7 @@
 package lab;
 
 import lab.exceptions.DuplicateIDException;
+import lab.exceptions.NoMatchingIDException;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -96,9 +97,16 @@ public class StaffListInterface
     }
     
     private void remove() {
-    	System.out.println("Enter ID of person to be removed: ");
-    	String id = scanner.nextLine();
-        allStaff.removeDetails(id);
+        String message;
+        try {
+            System.out.println("Enter ID of person to be removed: ");
+            String id = scanner.nextLine();
+            allStaff.removeDetails(id);
+            message = "Staff with ID " + id + " removed";
+        } catch (NoMatchingIDException e) {
+            message = e.getMessage() + " \nDetails not removed";
+        }
+        System.out.println(message);
     }
     
     /**

@@ -15,7 +15,13 @@ public class Staff implements Comparable<Staff>
      * @param hoursWorked The hours worked
      */
     public Staff(String id, String name, int hoursWorked)
-    {   
+    {
+        if(name == null || name.trim().length() == 0) throw new IllegalStateException("Cannot have an empty name");
+        if(id == null || id.trim().length() == 0) throw new IllegalStateException("Cannot have an empty id");
+        if(hoursWorked < 0 || hoursWorked > 100) throw new IllegalStateException("Cannot work less than 0 or more than 100 hours");
+
+        if(name.matches(".*\\d.*")) throw new IllegalStateException("Names cannot contains numbers");
+
         this.id =id.trim();
         this.name = name.trim();
         this.hoursWorked = hoursWorked;

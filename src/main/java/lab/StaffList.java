@@ -3,6 +3,7 @@ package lab;
 //maintains a list of Staff objects as an ArrayList
 
 import lab.exceptions.DuplicateIDException;
+import lab.exceptions.NoMatchingIDException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,8 +53,9 @@ public class StaffList
             String id = details.getId();
             if (findById(id) != null)
                 throw new DuplicateIDException(id);
-            else
+            else {
                 staffList.add(details);
+            }
         }
     }
     
@@ -61,11 +63,11 @@ public class StaffList
      * remove Staff object identified by this ID
      * @param id the ID identifying the person to be removed
      */
-    public void removeDetails(String id) {
+    public void removeDetails(String id) throws NoMatchingIDException {
     	int index = findIndex(id);
         if (index != -1) {
-        	staffList.remove(index);
-        }
+            staffList.remove(index);
+        } else throw new NoMatchingIDException(id);
     }
     /**
      * Look up an id and return index
